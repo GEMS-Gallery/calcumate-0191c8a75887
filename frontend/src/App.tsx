@@ -1,6 +1,26 @@
 import React, { useState } from 'react';
 import { Container, Grid, Button, TextField, CircularProgress } from '@mui/material';
 import { backend } from 'declarations/backend';
+import {
+  Rocket as RocketIcon,
+  Add as AddIcon,
+  Remove as RemoveIcon,
+  Clear as ClearIcon,
+  Close as CloseIcon,
+  Satellite as SatelliteIcon,
+  Star as StarIcon,
+  Public as PublicIcon,
+  Explore as ExploreIcon,
+  FlightTakeoff as FlightTakeoffIcon,
+  FlightLand as FlightLandIcon,
+  Brightness1 as Brightness1Icon,
+  Brightness2 as Brightness2Icon,
+  Brightness3 as Brightness3Icon,
+  Brightness4 as Brightness4Icon,
+  Brightness5 as Brightness5Icon,
+  Brightness6 as Brightness6Icon,
+  Brightness7 as Brightness7Icon,
+} from '@mui/icons-material';
 
 const App: React.FC = () => {
   const [display, setDisplay] = useState<string>('');
@@ -39,10 +59,22 @@ const App: React.FC = () => {
   };
 
   const buttonConfig = [
-    '7', '8', '9', '/',
-    '4', '5', '6', '*',
-    '1', '2', '3', '-',
-    'C', '0', '=', '+'
+    { text: '7', icon: <Brightness1Icon /> },
+    { text: '8', icon: <Brightness2Icon /> },
+    { text: '9', icon: <Brightness3Icon /> },
+    { text: '/', icon: <RocketIcon /> },
+    { text: '4', icon: <Brightness4Icon /> },
+    { text: '5', icon: <Brightness5Icon /> },
+    { text: '6', icon: <Brightness6Icon /> },
+    { text: '*', icon: <StarIcon /> },
+    { text: '1', icon: <Brightness7Icon /> },
+    { text: '2', icon: <SatelliteIcon /> },
+    { text: '3', icon: <PublicIcon /> },
+    { text: '-', icon: <RemoveIcon /> },
+    { text: 'C', icon: <ClearIcon /> },
+    { text: '0', icon: <ExploreIcon /> },
+    { text: '=', icon: <FlightLandIcon /> },
+    { text: '+', icon: <AddIcon /> },
   ];
 
   return (
@@ -58,22 +90,23 @@ const App: React.FC = () => {
       />
       <Grid container spacing={1}>
         {buttonConfig.map((btn) => (
-          <Grid item xs={3} key={btn}>
+          <Grid item xs={3} key={btn.text}>
             <Button
               fullWidth
               variant="contained"
               onClick={() => {
-                switch (btn) {
+                switch (btn.text) {
                   case 'C': handleClear(); break;
                   case '=': handleCalculate(); break;
-                  case '+': case '-': case '*': case '/': handleOperationClick(btn); break;
-                  default: handleNumberClick(btn);
+                  case '+': case '-': case '*': case '/': handleOperationClick(btn.text); break;
+                  default: handleNumberClick(btn.text);
                 }
               }}
               disabled={loading}
               className="calculator-button"
             >
-              {btn}
+              {btn.icon}
+              {btn.text}
             </Button>
           </Grid>
         ))}

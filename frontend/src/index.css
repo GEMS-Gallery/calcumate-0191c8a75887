@@ -15,4 +15,12 @@ code {
 
 .calculator-button {
   height: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.calculator-button .MuiSvgIcon-root {
+  margin-bottom: 4px;
 }
