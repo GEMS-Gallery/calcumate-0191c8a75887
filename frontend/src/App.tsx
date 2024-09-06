@@ -38,6 +38,13 @@ const App: React.FC = () => {
     }
   };
 
+  const buttonConfig = [
+    '7', '8', '9', '/',
+    '4', '5', '6', '*',
+    '1', '2', '3', '-',
+    'C', '0', '=', '+'
+  ];
+
   return (
     <Container maxWidth="xs" sx={{ mt: 4 }}>
       <TextField
@@ -50,7 +57,7 @@ const App: React.FC = () => {
         sx={{ mb: 2 }}
       />
       <Grid container spacing={1}>
-        {['7', '8', '9', '/', '4', '5', '6', '*', '1', '2', '3', '-', 'C', '0', '=', '+'].map((btn) => (
+        {buttonConfig.map((btn) => (
           <Grid item xs={3} key={btn}>
             <Button
               fullWidth
@@ -64,6 +71,7 @@ const App: React.FC = () => {
                 }
               }}
               disabled={loading}
+              className="calculator-button"
             >
               {btn}
             </Button>
